@@ -5,6 +5,7 @@ def ball_movement():
     Handles the movement of the ball and collision detection with the player and screen boundaries.
     """
     global ball_speed_x, ball_speed_y, score, start
+
     # Move the ball
     ball.x += ball_speed_x
     ball.y += ball_speed_y
