@@ -1,4 +1,4 @@
-import pygame, sys, random
+import pygame, sys, random, os
 highscore = 0
 def ball_movement():
     """
@@ -11,7 +11,7 @@ def ball_movement():
 
     # Start the ball movement when the game begins
     # TODO Task 5 Create a Merge Conflict
-    speed = 5
+    speed = 10
     if start:
         ball_speed_x = speed * random.choice((1, -1))  # Randomize initial horizontal direction
         ball_speed_y = speed * random.choice((1, -1))  # Randomize initial vertical direction
@@ -23,11 +23,11 @@ def ball_movement():
         if abs(ball.bottom - player.top) < 10:  # Check if ball hits the top of the paddle
             # TODO Task 2: Fix score to increase by 1
             score+=1 # Increase player score
+            explosion.play()
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
             global highscore
-            explosion= pygame.mixer.Sound("c:/efectobolarebotew.wav")
-            explosion.play()
+
             if score > highscore:
                 highscore = score
     # Ball collision with top boundary
@@ -68,6 +68,8 @@ pygame.mixer.pre_init(44100, -16, 1, 1024)
 pygame.init()
 clock = pygame.time.Clock()
 
+sound_path = os.path.join("audioeffects", "efectobolarebotew.wav")
+explosion = pygame.mixer.Sound(sound_path)
 # Main Window setup
 screen_width = 500  # Screen width (can be adjusted)
 screen_height = 500  # Screen height (can be adjusted)
