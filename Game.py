@@ -76,7 +76,9 @@ screen_width = 500  # Screen width (can be adjusted)
 screen_height = 500  # Screen height (can be adjusted)
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')  # Set window title
-
+image_path = os.path.join("imagenesjuego", "fotojuego.jpg")
+fotojuego = pygame.image.load(image_path)
+fotojuego = pygame.transform.scale(fotojuego, (screen_width, screen_height))
 # Colors
 bg_color = pygame.Color('grey12')
 
@@ -130,12 +132,12 @@ while True:
     # Visuals
     light_grey = pygame.Color("grey83")
     red = pygame.Color('red')
-    screen.fill(bg_color)  # Clear screen with background color
+    screen.blit(fotojuego, (0,0)) # Clear screen with background color
     pygame.draw.rect(screen, light_grey, player)  # Draw player paddle
     # TODO Task 3: Change the Ball Color
     pygame.draw.ellipse(screen, red, ball)  # Draw ball
-    player_text = basic_font.render(f'{score},{highscore}', False, light_grey)  # Render player score
-    screen.blit(player_text, (screen_width/2 - 15, 10))  # Display score on screen
+    player_text = basic_font.render(f'High Score:{highscore} Score: {score}', False, light_grey)  # Render player score
+    screen.blit(player_text, (10, 10))  # Display score on screen
 
     # Update display
     pygame.display.flip()
